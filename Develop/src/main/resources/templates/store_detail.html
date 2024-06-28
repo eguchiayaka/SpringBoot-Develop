@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>店舗詳細</title>
+</head>
+
+<body>
+	<h1>店舗詳細</h1>
+    <form method="post" th:action="@{/admin/stores}">
+		<table border="1">
+            <tr>
+                <th>店舗ID</th>
+                <td th:text="${store.id}"></td>
+            </tr>
+            <tr>
+                <th>店舗名</th>
+                <td th:text="${store.store_name}"></td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td th:text="${store.address}"></td>
+            </tr>
+        </table>
+        <button type="submit">編集</button>
+    </form>
+    <a th:href="@{/admin/top}">TOPに戻る</a>
+</body>
+
+</html>

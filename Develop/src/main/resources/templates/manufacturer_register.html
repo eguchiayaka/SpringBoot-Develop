@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>新規登録</title>
+</head>
+
+<body>
+	<h1>新規登録</h1>
+	<form th:action="@{/admin/manufacturers/register}" method="post" th:object="${manufacturerRegisterForm}">
+
+		<table border="1">
+			<tr>
+				<td>メーカID</td>
+					<td th:text="${id}"></td>
+			</tr>
+
+			<tr>
+				<td>メーカ名</td>
+				<td>
+					<input type="text" th:field="*{manufacturer_name}" />
+					<span th:if="${#fields.hasErrors('manufacturer_name')}" th:errors="*{manufacturer_name}" style="color: red"></span>
+				</td>
+			</tr>
+
+
+		</table>
+		<input type="submit" value="登録">
+	</form>
+	<a th:href="@{/admin/manufacturers}">戻る</a>
+</html>
