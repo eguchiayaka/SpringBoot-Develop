@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>メーカー編集</title>
+</head>
+
+<body>
+	<h1>メーカー編集</h1>
+	<form th:object="${manufacturerEditForm}" method="post"
+		th:action="@{/admin/manufacturers/{id}/edit(id=${manufacturerEditForm.id})}">
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<td th:text="${manufacturerEditForm.id}"></td>
+			</tr>
+			<tr>
+				<th>メーカー名</th>
+				<td>
+					<input type="text" th:field="*{manufacturer_name}" />
+					<span th:if="${#fields.hasErrors('manufacturer_name')}" th:errors="*{manufacturer_name}"
+						style="color: red"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="created_at">作成日時</label></td>
+				<td>
+					<span th:text="*{createdAt}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="updated_at">更新日時</label></td>
+				<td>
+					<span th:text="*{updatedAt}"></span>
+				</td>
+			</tr>
+		</table>
+		<button type="submit">更新</button>
+	</form>
+	<a th:href="@{/admin/manufacturers}">一覧に戻る</a>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>メーカ詳細</title>
+</head>
+
+<body>
+	<h1>メーカ詳細</h1>
+	<form method="post" th:action="@{/admin/manufacturers/{id}(id=${manufacturer.id})}">
+		<table border="1">
+			<tr>
+				<th>店舗ID</th>
+				<td th:text="${manufacturer.id}"></td>
+			</tr>
+			<tr>
+				<th>店舗名</th>
+				<td th:text="${manufacturer.manufacturer_name}"></td>
+			</tr>
+			<tr>
+				<td><label for="created_at">作成日時</label></td>
+				<td>
+					<span th:text="*{created_at}"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="updated_at">更新日時</label></td>
+				<td>
+					<span th:text="*{updated_at}"></span>
+				</td>
+			</tr>
+
+		</table>
+		<button type="submit" name="action" value="delete">削除</button>
+		<button type="submit" name="action" value="edit">編集</button>
+	</form>
+	<a th:href="@{/admin/manufacturers}">戻る</a>
+</body>
+
+</html>
