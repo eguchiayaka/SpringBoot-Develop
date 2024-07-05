@@ -6,5 +6,4 @@ import com.example.demo.entity.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-
 	}

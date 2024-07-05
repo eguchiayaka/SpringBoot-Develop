@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -40,6 +41,10 @@ public class SignupForm implements Serializable {
 
 
 	@NotBlank
+	@Pattern(
+	 regexp="^(?=.*[A-Z])[a-zA-Z0-9_]{8,64}+$",
+	 message = "パスワードは8文字以上64文字以内で、半角英字（大文字＆小文字）、半角数字および記号を含む必要があります"
+ )
 	private String password;
 
 	private LocalDateTime createdAt;

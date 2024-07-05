@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品詳細</title>
+</head>
+
+<body>
+	<h1>商品詳細</h1>
+	<form th:object="${productOrderForm}" th:action="@{/admin/products/{id}/order(id=${productInfo.id})}" method="post">
+
+		<table border="1">
+			<tr>
+				<th>製品ID</th>
+				<td th:text="${productOrderForm.product_infos_id}"></td>
+			</tr>
+			<tr>
+				<th>店舗ID</th>
+				<td th:text="${productOrderForm.store_id}"></td>
+			</tr>
+
+			<tr>
+				<th>発注数</th>
+				<td>
+					<input type="number" th:field="*{number_order}" />
+					<span th:if="${#fields.hasErrors('number_order')}" th:errors="*{number_order}"
+						style="color: red"></span>
+				</td>
+			</tr>
+		</table>
+		<button type="submit">発注する</button>
+	</form>
+
+	<a th:href="@{/admin/products}">商品一覧に戻る</a>
+</body>
+
+</html>

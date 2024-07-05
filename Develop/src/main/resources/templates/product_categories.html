@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>商品一覧</title>
+	<style>
+		.product-list {
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.product-item {
+			width: 50%;
+			padding: 10px;
+			box-sizing: border-box;
+			/* paddingが幅に含まれるように */
+		}
+
+		.product-details {
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin-bottom: 10px;
+		}
+
+		.product-image {
+			max-width: 100%;
+			height: auto;
+			display: block;
+			/* 画像がテキストによって縦にズレるのを防ぐ */
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>商品一覧</h1>
+
+	<form method="post" th:action="@{/admin/products}">
+		<table border="1">
+			<tr>
+				<th>商品名</th>
+				<td>
+					<input type="text" name="keyword" placeholder="商品名で検索" th:value="${keyword}" />
+				</td>
+			</tr>
+			<th>大カテゴリ</th>
+			<td>
+				<select name="categoryId" id="categorySelect">
+					<option value="">選択してください</option>
+					<option th:each="category : ${categories}" th:value="${category.id}"
+						th:text="${category.category_name}">
+					</option>
+				</select>
+			</td>
+			</tr>
+			<tr>
+				<th>中カテゴリ</th>
+				<td>
+					<select name="subCategoryId" id="subCategorySelect">
+						<option value="">選択してください</option>
+						<option th:each="subCategory : ${sub_categories}" th:value="${subCategory.id}"
+							th:text="${subCategory.sub_category_name}" th:data-category-id="${subCategory.categoryId}">
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>小カテゴリ</th>
+				<td>
+					<select name="smallCategoryId">
+						<option value="">選択してください</option>
+						<option th:each="smallCategory : ${small_categories}" th:value="${smallCategory.id}"
+							th:text="${smallCategory.small_category_name}">
+						</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<button type="submit">検索</button>
+	</form>
+
+	<div th:if="${not #lists.isEmpty(products)}" class="product-list">
+		<div th:each="product : ${products}" class="product-item">
+			<div class="product-details">
+				<h2>
+					<a th:href="@{/admin/products/{id}(id=${product.id})}">
+						<span th:text="${product.productsName}"></span>
+					</a>
+				</h2>
+
+				<img th:src="@{/images/products_image.jpg}" alt="Product Image" class="product-image" />
+			</div>
+		</div>
+	</div>
+	<div th:if="${#lists.isEmpty(products)}">
+		<p>商品が見つかりませんでした。</p>
+	</div>
+
+	<a th:href="@{/admin/top}">Topに戻る</a>
+</body>
+
+</html>
