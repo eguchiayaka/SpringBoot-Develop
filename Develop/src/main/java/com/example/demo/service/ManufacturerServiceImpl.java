@@ -49,5 +49,9 @@ public void deleteManufacturer(Long id) {
 public Manufacturer manufacturerfindById(Long id) {
 	return manufacturerRepository.findById(id).orElse(null);
 }
+
+public Manufacturer getManufacturerById(Long manufacturerId) {
+return manufacturerRepository.getManufacturerById(manufacturerId).orElse(null);
+}
 }
 

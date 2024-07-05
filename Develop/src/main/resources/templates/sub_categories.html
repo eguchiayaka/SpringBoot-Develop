@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>中カテゴリー一覧</title>
+    <style>
+        /* クリック可能な行のスタイル */
+        .clickable-row {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>中カテゴリー一覧</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>カテゴリー名</th>
+                <th>詳細</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sub_category : ${sub_categories}" th:class="'clickable-row'" th:data-id="${sub_category.id}"
+                onclick="redirectToDetail(this)">
+                <td th:text="${sub_category.id}"></td>
+                <td th:text="${sub_category.sub_category_name}"></td>
+                <td>
+                    <button type="button" class="btn btn-primary">詳細</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/admin/categories}">大カテゴリーに戻る</a>
+
+    <script th:inline="javascript">
+        function redirectToDetail(row) {
+            var sub_categoryId = row.getAttribute('data-id');
+			var categoryId = /*[[${categoryId}]]*/ null;
+            window.location.href = '/admin/categories/' + categoryId + '/'  +  sub_categoryId;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -35,4 +35,5 @@ public class StoreServiceImpl implements StoreService {
     public Store getStoreById(Long storeId) {
         return storeRepository.findById(storeId).orElse(null);
     }
+
 }

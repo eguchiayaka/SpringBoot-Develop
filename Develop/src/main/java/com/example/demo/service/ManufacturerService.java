@@ -10,4 +10,5 @@ public interface ManufacturerService {
 	 Manufacturer saveManufacturer(ManufacturerRegisterForm manufacturerRegisterForm) ;
 	 void deleteManufacturer(Long id);
 	 Manufacturer manufacturerfindById(Long id);
+	Manufacturer getManufacturerById(Long manufacturerId);
 }

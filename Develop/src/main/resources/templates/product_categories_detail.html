@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細</title>
+</head>
+
+<body>
+    <h1>商品詳細</h1>
+	<form th:action="@{/admin/products/{id}(id=${productInfo.id})}" method="post">
+    <table border="1">
+        <tr>
+            <th>大カテゴリ名</th>
+            <td th:text="${productInfo.category_id}"></td>
+        </tr>
+        <tr>
+            <th>中カテゴリ名</th>
+            <td th:text="${productInfo.sub_category_id}"></td>
+        </tr>
+        <tr>
+            <th>小カテゴリ名</th>
+            <td th:text="${productInfo.small_category_id}"></td>
+        </tr>
+        <tr>
+            <th>商品名</th>
+            <td th:text="${productInfo.productsName}"></td>
+        </tr>
+        <tr>
+            <th>商品の説明</th>
+            <td th:text="${productInfo.products_explation}"></td>
+        </tr>
+        <tr>
+            <th>商品画像</th>
+            <td>
+                <img th:src="@{/images/products_image.jpg}" alt="Product Image" class="product-image" />
+            </td>
+        </tr>
+		<tr>
+		            <th>在庫数</th>
+		            <td th:text="${productInfo.stock}"></td>
+		        </tr>
+    </table>
+    
+   
+        <button type="submit">発注画面へ</button>
+  
+    
+    <!-- 商品一覧に戻るリンク -->
+    <a th:href="@{/admin/products}">商品一覧に戻る</a>
+</body>
+
+</html>

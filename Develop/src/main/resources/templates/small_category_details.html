@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>商品詳細</title>
+</head>
+
+<body>
+	<h1>商品詳細</h1>
+	   <div th:if="${product == null}">
+	       <p>商品情報は登録されていません</p>
+	   </div>
+	   <div th:if="${product != null}">
+	       <table border="1">
+	           <tr>
+            <th>ID</th>
+            <td th:text="${product.id}"></td>
+        </tr>
+        <tr>
+            <th>メーカーID</th>
+            <td th:text="${product.manufacturerId}"></td>
+        </tr>
+        <tr>
+            <th>小カテゴリーID</th>
+            <td th:text="${product.smallCategoryId}"></td>
+        </tr>
+        <tr>
+            <th>商品名</th>
+            <td th:text="${product.productsName}"></td>
+        </tr>
+        <tr>
+            <th>商品説明</th>
+            <td th:text="${product.products_explation}"></td>
+        </tr>
+       
+    </table>
+  
+	<a th:href="@{'/admin/categories/' + ${categoryId} + '/' + ${subCategoryId}}">小カテゴリ一覧に戻る</a>
+</body>
+
+</html>
